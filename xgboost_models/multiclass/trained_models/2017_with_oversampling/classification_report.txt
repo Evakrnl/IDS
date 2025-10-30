@@ -1,0 +1,22 @@
+                                              precision    recall  f1-score   support
+
+                                      BENIGN       1.00      1.00      1.00   1582561
+                                 Botnet Ares       1.00      1.00      1.00    100736
+                              DDoS LOIC HTTP       1.00      1.00      1.00     95144
+                               DoS GoldenEye       1.00      1.00      1.00    107567
+                                    DoS Hulk       1.00      1.00      1.00    158468
+                            DoS Slowhttptest       1.00      1.00      1.00    101740
+                               DoS Slowloris       1.00      1.00      1.00    103859
+                      FTP-BruteForce-Patator       1.00      1.00      1.00    103972
+                                  Heartbleed       1.00      1.00      1.00    100011
+Infiltration - Communication Victim Attacker       1.00      1.00      1.00    100032
+                Infiltration - NMAP Portscan       0.98      0.96      0.97    171767
+                                    Portscan       0.96      0.98      0.97    159066
+                      SSH-BruteForce-Patator       1.00      1.00      1.00    102961
+                    Web Attack - Brute Force       1.00      1.00      1.00    100073
+                  Web Attack - SQL Injection       1.00      1.00      1.00    100013
+                            Web Attack - XSS       1.00      1.00      1.00    100018
+
+                                    accuracy                           1.00   3287988
+                                   macro avg       1.00      1.00      1.00   3287988
+                                weighted avg       1.00      1.00      1.00   3287988
