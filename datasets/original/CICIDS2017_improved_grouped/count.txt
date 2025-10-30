@@ -1,0 +1,64 @@
+
+File: DoS GoldenEye.csv
+Label categories:
+  - DoS GoldenEye: 7567
+
+File: BENIGN.csv
+Label categories:
+  - BENIGN: 1582566
+
+File: DoS Slowloris.csv
+Label categories:
+  - DoS Slowloris: 3859
+
+File: Portscan.csv
+Label categories:
+  - Portscan: 159066
+
+File: DoS Hulk.csv
+Label categories:
+  - DoS Hulk: 158468
+
+File: SSH-Patator.csv
+Label categories:
+  - SSH-Patator: 2961
+
+File: Web Attack - Brute Force.csv
+Label categories:
+  - Web Attack - Brute Force: 73
+
+File: Web Attack - XSS.csv
+Label categories:
+  - Web Attack - XSS: 18
+
+File: DoS Slowhttptest.csv
+Label categories:
+  - DoS Slowhttptest: 1740
+
+File: Infiltration.csv
+Label categories:
+  - Infiltration: 36
+
+File: Infiltration - Portscan.csv
+Label categories:
+  - Infiltration - Portscan: 71767
+
+File: Heartbleed.csv
+Label categories:
+  - Heartbleed: 11
+
+File: Web Attack - SQL Injection.csv
+Label categories:
+  - Web Attack - SQL Injection: 13
+
+File: DDoS.csv
+Label categories:
+  - DDoS: 95144
+
+File: FTP-Patator.csv
+Label categories:
+  - FTP-Patator: 3972
+
+File: Botnet.csv
+Label categories:
+  - Botnet: 736

@@ -1,0 +1,48 @@
+
+📄 Αρχείο: Infiltration - Communication Victim Attacker.csv
+Κατηγορίες Label:
+  - Infiltration - Communication Victim Attacker: 100000
+
+📄 Αρχείο: DoS GoldenEye.csv
+Κατηγορίες Label:
+  - DoS GoldenEye: 100000
+
+📄 Αρχείο: Infiltration - NMAP Portscan.csv
+Κατηγορίες Label:
+  - Infiltration - NMAP Portscan: 100000
+
+📄 Αρχείο: DoS Slowloris.csv
+Κατηγορίες Label:
+  - DoS Slowloris: 100000
+
+📄 Αρχείο: Web Attack - Brute Force.csv
+Κατηγορίες Label:
+  - Web Attack - Brute Force: 100000
+
+📄 Αρχείο: SSH-BruteForce-Patator.csv
+Κατηγορίες Label:
+  - SSH-BruteForce-Patator: 100000
+
+📄 Αρχείο: Web Attack - XSS.csv
+Κατηγορίες Label:
+  - Web Attack - XSS: 100000
+
+📄 Αρχείο: DoS Slowhttptest.csv
+Κατηγορίες Label:
+  - DoS Slowhttptest: 100000
+
+📄 Αρχείο: Heartbleed.csv
+Κατηγορίες Label:
+  - Heartbleed: 100000
+
+📄 Αρχείο: FTP-BruteForce-Patator.csv
+Κατηγορίες Label:
+  - FTP-BruteForce-Patator: 100000
+
+📄 Αρχείο: Web Attack - SQL Injection.csv
+Κατηγορίες Label:
+  - Web Attack - SQL Injection: 100000
+
+📄 Αρχείο: Botnet Ares.csv
+Κατηγορίες Label:
+  - Botnet Ares: 100000

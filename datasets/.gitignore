@@ -1,0 +1,3 @@
+# Ignore only CSV files inside this folder and its subfolders
+*.csv
+**/*.csv

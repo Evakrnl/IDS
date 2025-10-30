@@ -1,0 +1,40 @@
+
+File: Web Attack - SQL - Attempted.csv
+Label categories:
+  - Web Attack - SQL - Attempted: 14
+
+File: DoS GoldenEye - Attempted.csv
+Label categories:
+  - DoS GoldenEye - Attempted: 4301
+
+File: Botnet Ares - Attempted.csv
+Label categories:
+  - Botnet Ares - Attempted: 262
+
+File: DoS Slowloris - Attempted.csv
+Label categories:
+  - DoS Slowloris - Attempted: 2280
+
+File: FTP-BruteForce - Attempted.csv
+Label categories:
+  - FTP-BruteForce - Attempted: 298874
+
+File: Web Attack - Brute Force - Attempted.csv
+Label categories:
+  - Web Attack - Brute Force - Attempted: 137
+
+File: DoS Hulk - Attempted.csv
+Label categories:
+  - DoS Hulk - Attempted: 86
+
+File: DDoS-LOIC-UDP - Attempted.csv
+Label categories:
+  - DDoS-LOIC-UDP - Attempted: 251
+
+File: Infiltration - Dropbox Download - Attempted.csv
+Label categories:
+  - Infiltration - Dropbox Download - Attempted: 28
+
+File: Web Attack - XSS - Attempted.csv
+Label categories:
+  - Web Attack - XSS - Attempted: 4

@@ -1,0 +1,60 @@
+
+File: Infiltration - Communication Victim Attacker.csv
+Label categories:
+  - Infiltration - Communication Victim Attacker: 204
+
+File: DDoS-LOIC-HTTP.csv
+Label categories:
+  - DDoS-LOIC-HTTP: 289328
+
+File: DoS GoldenEye.csv
+Label categories:
+  - DoS GoldenEye: 22560
+
+File: BENIGN.csv
+Label categories:
+  - BENIGN: 59353486
+
+File: Infiltration - NMAP Portscan.csv
+Label categories:
+  - Infiltration - NMAP Portscan: 89374
+
+File: DoS Slowloris.csv
+Label categories:
+  - DoS Slowloris: 8490
+
+File: Web Attack - SQL.csv
+Label categories:
+  - Web Attack - SQL: 39
+
+File: DoS Hulk.csv
+Label categories:
+  - DoS Hulk: 1803160
+
+File: DDoS-HOIC.csv
+Label categories:
+  - DDoS-HOIC: 1082293
+
+File: Web Attack - Brute Force.csv
+Label categories:
+  - Web Attack - Brute Force: 131
+
+File: Web Attack - XSS.csv
+Label categories:
+  - Web Attack - XSS: 113
+
+File: Infiltration - Dropbox Download.csv
+Label categories:
+  - Infiltration - Dropbox Download: 85
+
+File: Botnet Ares.csv
+Label categories:
+  - Botnet Ares: 142921
+
+File: DDoS-LOIC-UDP.csv
+Label categories:
+  - DDoS-LOIC-UDP: 2527
+
+File: SSH-BruteForce.csv
+Label categories:
+  - SSH-BruteForce: 94197

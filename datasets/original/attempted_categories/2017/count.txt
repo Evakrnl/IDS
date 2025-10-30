@@ -1,0 +1,44 @@
+
+File: DoS GoldenEye - Attempted.csv
+Label categories:
+  - DoS GoldenEye - Attempted: 80
+
+File: DoS Slowloris - Attempted.csv
+Label categories:
+  - DoS Slowloris - Attempted: 1847
+
+File: SSH-Patator - Attempted.csv
+Label categories:
+  - SSH-Patator - Attempted: 27
+
+File: Web Attack - SQL Injection - Attempted.csv
+Label categories:
+  - Web Attack - SQL Injection - Attempted: 5
+
+File: Botnet - Attempted.csv
+Label categories:
+  - Botnet - Attempted: 4067
+
+File: Web Attack - Brute Force - Attempted.csv
+Label categories:
+  - Web Attack - Brute Force - Attempted: 1292
+
+File: DoS Hulk - Attempted.csv
+Label categories:
+  - DoS Hulk - Attempted: 581
+
+File: Infiltration - Attempted.csv
+Label categories:
+  - Infiltration - Attempted: 45
+
+File: FTP-Patator - Attempted.csv
+Label categories:
+  - FTP-Patator - Attempted: 12
+
+File: Web Attack - XSS - Attempted.csv
+Label categories:
+  - Web Attack - XSS - Attempted: 655
+
+File: DoS Slowhttptest - Attempted.csv
+Label categories:
+  - DoS Slowhttptest - Attempted: 3368
