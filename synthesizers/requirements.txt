@@ -1,0 +1,15 @@
+sdv==1.26.0
+ctgan==0.11.0
+copulas==0.12.3
+deepecho==0.7.0
+rdt==1.17.1
+sdmetrics==0.22.0
+
+torch==2.7.1
+numpy==2.2.6
+pandas==2.3.1
+scikit-learn==1.7.1
+scipy==1.16.0
+
+# These versions are required to train, evaluate, and reload both CTGAN and TVAE models using SDV.
+# Place this file at synthesizers/ and install with: pip install -r requirements.txt

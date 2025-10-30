@@ -16,31 +16,31 @@ This thesis uses the **improved CICIDS2017 / CSE-CIC-IDS2018 datasets** prepared
 
 datasets/
 ├─ original/
-│ ├─ CICIDS2017_improved/ # place improved CSVs here (not tracked)
-│ ├─ CSECICIDS2018_improved/
-│ ├─ CICIDS2017_improved_grouped/
-│ ├─ CSECICIDS2018_improved_grouped/
-│ └─ attempted_categories/ # filtered/excluded samples + label stats
-│ ├─ 2017/
-│ └─ 2018/
+│  ├─ CICIDS2017_improved/                # place improved CSVs here (not tracked)
+│  ├─ CSECICIDS2018_improved/
+│  ├─ CICIDS2017_improved_grouped/
+│  ├─ CSECICIDS2018_improved_grouped/
+│  └─ attempted_categories/               # filtered/excluded samples + label stats
+│     ├─ 2017/
+│     └─ 2018/
 │
 ├─ preprocessed/
-│ ├─ per_session/
-│ │ ├─ 2017/
-│ │ └─ 2018/
-│ └─ per_year/
-│ ├─ 2017/
-│ └─ 2018/
+│  ├─ per_session/
+│  │  ├─ 2017/
+│  │  └─ 2018/
+│  └─ per_year/
+│     ├─ 2017/
+│     └─ 2018/
 │
 └─ synthetics/
-├─ oversampling_TVAE/
-│ ├─ 2017/
-│ ├─ 2018/
-│ └─ for_all/
-└─ predict_CTGAN/
-│ ├─ 2017/
-│ ├─ 2018/
-│ └─ for_all/
+   ├─ oversampling_TVAE/
+   │  ├─ 2017/
+   │  ├─ 2018/
+   │  └─ for_all/
+   └─ predict_CTGAN/
+      ├─ 2017/
+      ├─ 2018/
+      └─ for_all/
 
 
 ### Explanation
