@@ -6,7 +6,7 @@ The prediction stage is designed to load previously trained models, perform infe
 
 ---
 
-## 📁 Structure
+##  Structure
 
 ```
 predict/
@@ -27,9 +27,9 @@ Evaluation outputs (reports and heatmaps) are saved in these folders automatical
 
 ---
 
-## ⚙️ Scripts
+##  Scripts
 
-### 🔹 `predict_multiclass_xgb.py`
+###  `predict_multiclass_xgb.py`
 
 Performs inference using a **single multiclass XGBoost model** and its corresponding **LabelEncoder**.
 
@@ -42,7 +42,7 @@ Performs inference using a **single multiclass XGBoost model** and its correspon
 
 ---
 
-### 🔹 `predict_one_vs_all_xgb.py`
+###  `predict_one_vs_all_xgb.py`
 
 Performs inference using **multiple binary XGBoost models**, one for each attack type.
 
@@ -55,7 +55,7 @@ Performs inference using **multiple binary XGBoost models**, one for each attack
 
 ---
 
-## 🧾 Output Files
+##  Output Files
 
 After execution, the following files are generated inside each run's output directory:
 
@@ -87,7 +87,7 @@ python predict_one_vs_all_xgb.py
 
 ---
 
-## 📦 requirements.txt
+##  requirements.txt
 
 All dependencies needed for running the prediction scripts are listed in the root-level `requirements.txt` file:
 
@@ -109,7 +109,7 @@ pip install -r requirements.txt
 
 ---
 
-## 💡 Notes
+## Notes
 
 * The probability threshold for `"Unknown"` classification defaults to **0.2**.
 * Infinite (`inf`) and missing (`NaN`) values are removed automatically.
