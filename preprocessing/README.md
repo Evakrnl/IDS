@@ -75,9 +75,9 @@ Step | Description | Script Used
     500,000 BENIGN rows per session (total 5,000,000)
     -> random_benign_pick.py
 
-9️ | Enumeration of first appearances (LabelName-<index>):
+9️ | Enumeration of first appearances (LabelName_<index>):
     renames file and updates the Label column accordingly
-    -> label_from_filename.py
+    -> enumerate_csv_labels.py.py
 
 10 | Generation of normalized (0–1) feature statistics per label
     -> create_feature_stats.py

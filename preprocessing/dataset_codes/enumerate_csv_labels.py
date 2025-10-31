@@ -36,7 +36,7 @@ def enumerate_first_appearance(root_folder: str | Path) -> None:
             counters[base_name] = counters.get(base_name, 0) + 1
             idx = counters[base_name]
 
-            new_stem = f"{base_name}-{idx}"
+            new_stem = f"{base_name}_{idx}"
             new_path = p.with_name(f"{new_stem}.csv")
 
             # Update the Label column
