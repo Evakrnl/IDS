@@ -10,11 +10,11 @@ The script merges all CSVs, retains the day information, and produces one KDE pl
 
 Example Configuration:
 ----------------------
-inputFolders = {
+INPUT_FOLDERS = {
     "2017": "/datasets/preprocessed/per_session/2017",
     "2018": "/datasets/preprocessed/per_session/2018",
 }
-outputFolder = "/data_distribution_kde_plots/preprocessed/per_session"
+OUTPUT_FOLDER = "/data_distribution_kde_plots/preprocessed/per_session"
 """
 
 import os
