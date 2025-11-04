@@ -69,6 +69,9 @@ at the time of training. Loading them with a different version of SDV, torch, pa
 dependencies may result in runtime errors or invalid outputs.
 
 To ensure reproducibility:
+
 • Each model folder (e.g., `ctgan/`, `tvae/`) includes a `requirements.txt` with the exact versions used.
+
 • It is strongly recommended to use a virtual environment and run:
+
     pip install -r requirements.txt
