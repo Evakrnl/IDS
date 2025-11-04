@@ -1,6 +1,7 @@
-====================================================
+==================================================
+
 PREPROCESSING WORKFLOW — CICIDS2017 & CICIDS2018
-====================================================
+==================================================
 
 This document describes the full preprocessing workflow,
 step order, and Python scripts used for both preprocessing
