@@ -92,6 +92,7 @@ This directory contains code and outputs related to the generation of synthetic 
     - `<LABEL>_metrics.json`
       
       A JSON file with overall similarity metrics between real and synthetic samples, including:
+      
         • Average KS Score  
         • RMSD (Root Mean Square Difference)  
         • Absolute Mean Difference (Overall)  
@@ -101,6 +102,7 @@ This directory contains code and outputs related to the generation of synthetic 
     - `<LABEL>_per_feature_distances.csv`
       
       A CSV file with per-feature comparisons between real and synthetic data:
+      
         • KS-1 Score per feature (1 - KS statistic)  
         • RMSD per feature  
         • Absolute Mean Difference per feature  
