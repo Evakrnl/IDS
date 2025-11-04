@@ -98,5 +98,3 @@ GENERAL NOTES
 • The process is fully reproducible and well-documented.
 
 
-END OF FILE
-====================================================
