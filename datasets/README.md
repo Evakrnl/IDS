@@ -14,6 +14,7 @@ This thesis uses the **improved CICIDS2017 / CSE-CIC-IDS2018 datasets** prepared
 
 ## Folder Structure
 
+```
 datasets/
 ├─ original/
 │  ├─ CICIDS2017_improved/                # place improved CSVs here (not tracked)
@@ -42,6 +43,7 @@ datasets/
       ├─ 2018/
       └─ for_all/
 
+```
 
 ### Explanation
 - **`original/`**  
