@@ -187,7 +187,3 @@ python xgb_multiclass_shap.py
 All SHAP results will be saved automatically to the corresponding folder defined in `RESULTS_PATH`.
 
 ---
-
-
-
----
