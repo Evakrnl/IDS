@@ -87,7 +87,7 @@ Step | Description | Script Used
 GENERAL NOTES
 ----------------------------------------------------
 • Logs from each preprocessing stage are saved in:
-  Documents/ids/datasets directories.
+  /ids/datasets directories.
 
 • Shared scripts between both scenarios:
   delete_column.py, normalize_labels.py, create_feature_stats.py
