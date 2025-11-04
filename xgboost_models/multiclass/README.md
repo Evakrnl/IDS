@@ -98,11 +98,12 @@ Each subfolder under `trained_models/` contains:
 ## Output Artifacts
 
 | File                        | Description                                           |
-| ----------------------------------------------------------------------------------- |
+| ---------------------------- | ----------------------------------------------------- |
 | `xgboost_model.json`        | Trained multiclass model file.                        |
 | `label_encoder.pkl`         | Saved label encoder for prediction consistency.       |
 | `classification_report.txt` | Detailed precision, recall, and F1 scores.            |
 | `confusion_matrix.png`      | Visual confusion matrix of predicted vs. true labels. |
+
 
 ## Next Stages of the IDS Pipeline
 
