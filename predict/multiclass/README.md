@@ -26,11 +26,11 @@ This script requires you to manually specify the correct paths before running it
 Example:
 
 ```python
-results_path = "/home/ml1/Documents/ids/predict/multiclass/2017"
-load_path = "/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2017"
+results_path = "/ids/predict/multiclass/2017"
+load_path = "/ids/xgboost_models/multiclass/trained_models/2017"
 model_path = os.path.join(load_path, "xgboost_model.json")
 encoder_path = os.path.join(load_path, "label_encoder.pkl")
-data_folders = ["/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017"]
+data_folders = ["/ids/datasets/synthetics/predict_CTGAN/2017"]
 ```
 
 ---
@@ -38,23 +38,23 @@ data_folders = ["/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017"
 ### Model – Data – Output Mapping
 
 **2017**
-- **Model Folder:** `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2017`
-- **Data Folder:** `/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017`
-- **Output Folder:** `/home/ml1/Documents/ids/predict/multiclass/2017`
+- **Model Folder:** `/ids/xgboost_models/multiclass/trained_models/2017`
+- **Data Folder:** `/ids/datasets/synthetics/predict_CTGAN/2017`
+- **Output Folder:** `/ids/predict/multiclass/2017`
 
 ---
 
 **2017 (with oversampling)**
-- **Model Folder:** `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2017_with_oversampling`
-- **Data Folder:** `/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017`
-- **Output Folder:** `/home/ml1/Documents/ids/predict/multiclass/2017_with_oversampling`
+- **Model Folder:** `/ids/xgboost_models/multiclass/trained_models/2017_with_oversampling`
+- **Data Folder:** `/ids/datasets/synthetics/predict_CTGAN/2017`
+- **Output Folder:** `/ids/predict/multiclass/2017_with_oversampling`
 
 ---
 
 **for_all**
-- **Model Folder:** `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/for_all`
-- **Data Folder:** `/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/for_all`
-- **Output Folder:** `/home/ml1/Documents/ids/predict/multiclass/for_all`
+- **Model Folder:** `/ids/xgboost_models/multiclass/trained_models/for_all`
+- **Data Folder:** `/ids/datasets/synthetics/predict_CTGAN/for_all`
+- **Output Folder:** `/ids/predict/multiclass/for_all`
 
 
 

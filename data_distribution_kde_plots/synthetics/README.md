@@ -24,24 +24,24 @@ Use this tool to:
 
 ```python
 INPUT_FOLDERS = {
-    "2017": "/datasets/synthetics/oversampling_TVAE/2017",
-    "2018": "/datasets/synthetics/oversampling_TVAE/2018",
-    "for_all": "/datasets/synthetics/oversampling_TVAE/for_all"
+    "2017": "/ids/datasets/synthetics/oversampling_TVAE/2017",
+    "2018": "/ids/datasets/synthetics/oversampling_TVAE/2018",
+    "for_all": "/ids/datasets/synthetics/oversampling_TVAE/for_all"
 }
 
-OUTPUT_FOLDER = "/data_distribution_kde_plots/synthetics/tvae"
+OUTPUT_FOLDER = "/ids/data_distribution_kde_plots/synthetics/tvae"
 ```
 
 ###  CTGAN Example
 
 ```python
 INPUT_FOLDERS = {
-    "2017": "/datasets/synthetics/predict_CTGAN/2017",
-    "2018": "/datasets/synthetics/predict_CTGAN/2018",
-    "for_all": "/datasets/synthetics/predict_CTGAN/for_all"
+    "2017": "/ids/datasets/synthetics/predict_CTGAN/2017",
+    "2018": "/ids/datasets/synthetics/predict_CTGAN/2018",
+    "for_all": "/ids/datasets/synthetics/predict_CTGAN/for_all"
 }
 
-OUTPUT_FOLDER = "/data_distribution_kde_plots/synthetics/ctgan"
+OUTPUT_FOLDER = "/ids/data_distribution_kde_plots/synthetics/ctgan"
 ```
 
 ---
@@ -100,7 +100,7 @@ After execution, the script saves one KDE plot per numeric feature in the corres
 
 ##  Notes
 
-* Non-numeric columns such as `Dst Port` and `Protocol` are automatically ignored.
+* Columns such as Dst Port and Protocol are excluded from visualization because their values remain nearly      constant or do not provide meaningful information for density-based comparison.
 * Each figure corresponds to one numeric feature plotted across all available labels.
 * The `BINS` variable (default = `10`) controls the number of intervals along the X-axis.
 * Each subplot title contains the respective label name.

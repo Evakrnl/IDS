@@ -23,9 +23,9 @@ Example `base_folders` configuration (Python):
 
 ```python
 base_folders = [
-    "/home/ml1/Documents/ids/datasets/preprocessed/per_year/2018"
+    "/ids/datasets/preprocessed/per_year/2018"
 ]
-results_path = "/home/ml1/Documents/ids/models/one_vs_all/2018/results"
+results_path = "/ids/models/one_vs_all/2018/results"
 ```
 
 You can include any number of folders in `base_folders` (real and/or synthetic). The script concatenates all CSV files found under those folders.

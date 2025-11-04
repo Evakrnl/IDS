@@ -26,8 +26,8 @@ Example configuration:
 
 ```python
 base_folders = [
-    "/home/ml1/Documents/ids/datasets/preprocessed/per_year/2017",
-    "/home/ml1/Documents/ids/datasets/preprocessed/per_year/2018"
+    "/ids/datasets/preprocessed/per_year/2017",
+    "/ids/datasets/preprocessed/per_year/2018"
 ]
 ```
 While in the `for_all_with_oversampling` configuration, both years and their synthetics are combined into a single dataset for global training.
@@ -36,9 +36,9 @@ Example configuration:
 
 ```python
 base_folders = [
-    "/home/ml1/Documents/ids/datasets/preprocessed/per_year/2017",
-    "/home/ml1/Documents/ids/datasets/preprocessed/per_year/2018",
-    "/home/ml1/Documents/ids/datasets/synthetics/oversampling_TVAE/for_all"
+    "/ids/datasets/preprocessed/per_year/2017",
+    "/ids/datasets/preprocessed/per_year/2018",
+    "/ids/datasets/synthetics/oversampling_TVAE/for_all"
 ]
 ```
 ---

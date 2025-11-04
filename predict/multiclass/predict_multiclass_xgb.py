@@ -211,11 +211,11 @@ def save_evaluation_results(y_true, y_pred, results_path: str):
 def main():
     """Main execution function for multiclass XGBoost prediction."""
     # Paths (to be filled before execution)
-    results_path = "/home/ml1/Documents/ids/predict/multiclass/2017"
-    load_path = "/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2017"
+    results_path = ""
+    load_path = ""
     model_path = os.path.join(load_path, "xgboost_model.json")
     encoder_path = os.path.join(load_path, "label_encoder.pkl")
-    data_folders = ["/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017"]
+    data_folders = [""]
 
     os.makedirs(results_path, exist_ok=True)
 

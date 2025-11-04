@@ -28,10 +28,10 @@ Example:
 
 ```python
 data_folders = [
-    "/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017"
+    "/ids/datasets/synthetics/predict_CTGAN/2017"
 ]
-models_dir = "/home/ml1/Documents/ids/xgboost_models/binary_one_vs_all/trained_models/2017"
-results_path = "/home/ml1/Documents/ids/predict/binary_one_vs_all/2017"
+models_dir = "/ids/xgboost_models/binary_one_vs_all/trained_models/2017"
+results_path = "/ids/predict/binary_one_vs_all/2017"
 ```
 
 ---
@@ -40,17 +40,17 @@ results_path = "/home/ml1/Documents/ids/predict/binary_one_vs_all/2017"
 
 **2017**
 
-* **Model Folder:** `/home/ml1/Documents/ids/xgboost_models/binary_one_vs_all/trained_models/2017`
-* **Data Folder:** `/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017`
-* **Output Folder:** `/home/ml1/Documents/ids/predict/binary_one_vs_all/2017`
+* **Model Folder:** `/ids/xgboost_models/binary_one_vs_all/trained_models/2017`
+* **Data Folder:** `/ids/datasets/synthetics/predict_CTGAN/2017`
+* **Output Folder:** `/ids/predict/binary_one_vs_all/2017`
 
 ---
 
 **for_all**
 
-* **Model Folder:** `/home/ml1/Documents/ids/xgboost_models/binary_one_vs_all/trained_models/for_all`
-* **Data Folder:** `/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/for_all`
-* **Output Folder:** `/home/ml1/Documents/ids/predict/binary_one_vs_all/for_all`
+* **Model Folder:** `/ids/xgboost_models/binary_one_vs_all/trained_models/for_all`
+* **Data Folder:** `/ids/datasets/synthetics/predict_CTGAN/for_all`
+* **Output Folder:** `/ids/predict/binary_one_vs_all/for_all`
 
 ---
 
