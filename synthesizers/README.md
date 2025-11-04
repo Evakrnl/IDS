@@ -26,8 +26,11 @@ Folder Structure:
     Same structure, using TVAESynthesizer instead of CTGAN.
 
 • Each subfolder (e.g., ctgan/2017/) contains:
+
     - model_<LABEL>.pkl              → Trained model for a specific label
+    
     - <LABEL>_metrics.json           → Overall similarity metrics
+    
     - <LABEL>_per_feature_distances.csv → Per-feature statistical comparison
 
 Usage in the IDS Pipeline
@@ -66,6 +69,9 @@ at the time of training. Loading them with a different version of SDV, torch, pa
 dependencies may result in runtime errors or invalid outputs.
 
 To ensure reproducibility:
+
 • Each model folder (e.g., `ctgan/`, `tvae/`) includes a `requirements.txt` with the exact versions used.
+
 • It is strongly recommended to use a virtual environment and run:
+
     pip install -r requirements.txt

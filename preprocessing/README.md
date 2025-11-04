@@ -1,6 +1,6 @@
-====================================================
+
 PREPROCESSING WORKFLOW — CICIDS2017 & CICIDS2018
-====================================================
+==================================================
 
 This document describes the full preprocessing workflow,
 step order, and Python scripts used for both preprocessing
@@ -87,7 +87,7 @@ Step | Description | Script Used
 GENERAL NOTES
 ----------------------------------------------------
 • Logs from each preprocessing stage are saved in:
-  Documents/ids/datasets directories.
+  /ids/datasets directories.
 
 • Shared scripts between both scenarios:
   delete_column.py, normalize_labels.py, create_feature_stats.py
@@ -97,6 +97,4 @@ GENERAL NOTES
 
 • The process is fully reproducible and well-documented.
 
-====================================================
-END OF FILE
-====================================================
+

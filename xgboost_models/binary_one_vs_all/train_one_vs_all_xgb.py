@@ -45,9 +45,9 @@ from sklearn.metrics import classification_report, confusion_matrix
 # CONFIGURATION
 # ==============================
 BASE_FOLDERS = [
-    "/home/ml1/Documents/Diplomatiki/Datasets/perYear/2018"
+    "..."
 ]
-RESULTS_PATH = "/home/ml1/Documents/Diplomatiki/TrainModels/OneVsAll/2018/results"
+RESULTS_PATH = "..."
 os.makedirs(RESULTS_PATH, exist_ok=True)
 
 print(f"\nResults will be saved to: {RESULTS_PATH}")
