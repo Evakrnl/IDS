@@ -22,10 +22,10 @@ Typical data locations used by the script:
 Example `base_folders` configuration (Python):
 
 ```python
-base_folders = [
+BASE_FOLDERS = [
     "/ids/datasets/preprocessed/per_year/2018"
 ]
-results_path = "/ids/models/one_vs_all/2018/results"
+RESULTS_PATH = "/ids/models/one_vs_all/2018/"
 ```
 
 You can include any number of folders in `base_folders` (real and/or synthetic). The script concatenates all CSV files found under those folders.
