@@ -25,7 +25,7 @@ Example `base_folders` configuration (Python):
 BASE_FOLDERS = [
     "/ids/datasets/preprocessed/per_year/2018"
 ]
-RESULTS_PATH = "/ids/models/one_vs_all/2018/"
+RESULTS_PATH = "/ids/xgboost_models/binary_one_vs_all/trained_models/2018"
 ```
 
 You can include any number of folders in `base_folders` (real and/or synthetic). The script concatenates all CSV files found under those folders.
