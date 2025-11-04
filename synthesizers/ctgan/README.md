@@ -84,11 +84,13 @@ This directory contains code and outputs related to the generation of synthetic 
   Each folder contains subfolders per label (e.g., `BENIGN`, `DoS_GoldenEye`, etc.), and inside each label folder:
 
     - `model_<LABEL>.pkl`
+      
       The trained CTGAN model for the specific label.
       This file can be reloaded using `CTGANSynthesizer.load()` to generate new synthetic samples
       without retraining.
 
     - `<LABEL>_metrics.json`
+      
       A JSON file with overall similarity metrics between real and synthetic samples, including:
         • Average KS Score  
         • RMSD (Root Mean Square Difference)  
@@ -97,6 +99,7 @@ This directory contains code and outputs related to the generation of synthetic 
         • External and Internal Duplicate Ratios  
 
     - `<LABEL>_per_feature_distances.csv`
+      
       A CSV file with per-feature comparisons between real and synthetic data:
         • KS-1 Score per feature (1 - KS statistic)  
         • RMSD per feature  
