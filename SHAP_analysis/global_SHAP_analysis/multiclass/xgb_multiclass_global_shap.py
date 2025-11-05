@@ -2,19 +2,19 @@
 # -*- coding: utf-8 -*-
 """
 ===============================================================================
-Compute SHAP-like Feature Contributions from a Trained XGBoost Multiclass Model
+Compute Global SHAP Feature Contributions from a Trained XGBoost Multiclass Model
 ===============================================================================
 
 Description:
 ------------
 This script:
-1. Loads a trained XGBoost JSON model and LabelEncoder.
-2. Reads CSV files from one or more folders, concatenates them, and cleans NaN/Inf.
-3. Makes predictions on all rows using the trained model.
-4. Computes SHAP-like feature contributions in GPU-friendly batches.
-5. Extracts contributions for the predicted class only.
-6. Calculates the mean SHAP values per class and saves them as CSV files.
-7. Optionally includes the true label (if present in the data).
+1. Loads a trained XGBoost multiclass model and its corresponding LabelEncoder.
+2. Reads CSV data from one or more folders, merges and cleans them.
+3. Performs predictions for all samples.
+4. Computes SHAP feature contributions in GPU-accelerated batches.
+5. Extracts SHAP values for the predicted class only.
+6. Calculates global mean SHAP values for all True Positive samples combined.
+7. Saves a single CSV file containing the globally averaged SHAP contributions.
 
 Requirements:
 -------------
@@ -23,15 +23,14 @@ Requirements:
 
 Example:
 --------
-Simply run the script:
-    python xgb_multiclass_shap.py
+    python xgb_multiclass_global_shap.py
 ===============================================================================
 """
 
 import os
 import glob
-import numpy as np
 import pandas as pd
+import numpy as np
 import joblib
 import xgboost as xgb
 from xgboost import XGBClassifier
@@ -41,11 +40,11 @@ from xgboost import XGBClassifier
 # Configuration
 # =============================================================================
 
-RESULTS_PATH = "/home/ml1/Documents/ids/SHAP_analysis/per-feature_SHAP_analysis/multiclass/..."
-LOAD_PATH = "/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/..."
+RESULTS_PATH = ""
+LOAD_PATH = ""
 MODEL_PATH = os.path.join(LOAD_PATH, "xgboost_model.json")
 ENCODER_PATH = os.path.join(LOAD_PATH, "label_encoder.pkl")
-BASE_FOLDERS = ["/home/ml1/Documents/ids/datasets/preprocessed/per_year/..."]
+BASE_FOLDERS = [""]
 BATCH_SIZE = 100000
 DEVICE = "cuda:0"
 
@@ -71,7 +70,7 @@ def load_model_and_encoder(model_path: str, encoder_path: str, device: str = "cu
     -------
     model : XGBClassifier
         The loaded XGBoost classifier.
-    label_encoder : Label Encoder
+    label_encoder : LabelEncoder
         The corresponding label encoder.
     """
     print("Loading XGBoost model and LabelEncoder...")
@@ -120,10 +119,11 @@ def load_and_clean_data(folders):
     df = pd.concat(dfs, ignore_index=True)
     print(f"Total rows for prediction: {len(df)}")
 
-    # Replace Inf values and drop NaN rows
+    # Replace Inf and drop NaN
     df.replace([np.inf, -np.inf], np.nan, inplace=True)
+    before = len(df)
     df.dropna(inplace=True)
-    print(f"After cleaning: {len(df)} rows")
+    print(f"Removed {before - len(df)} rows with NaN/Inf")
 
     return df
 
@@ -149,24 +149,19 @@ def compute_shap_batches(booster, X, batch_size):
     print("Computing SHAP contributions (GPU batches)...")
 
     total = len(X)
-    full_batches = total // batch_size
-    remainder = total % batch_size
-
-    batch_sizes = [batch_size] * full_batches
-    if remainder > 0:
-        batch_sizes.append(remainder)
+    num_batches = (total // batch_size) + (1 if total % batch_size > 0 else 0)
 
     all_shap = []
     start = 0
-    for i, size in enumerate(batch_sizes, start=1):
-        end = start + size
+    for i in range(num_batches):
+        end = min(start + batch_size, total)
         X_batch = X.iloc[start:end]
-        dtest = xgb.DMatrix(X_batch, feature_names=list(X.columns))
 
+        dtest = xgb.DMatrix(X_batch, feature_names=list(X.columns))
         shap_batch = booster.predict(dtest, pred_contribs=True)
         all_shap.append(shap_batch)
 
-        print(f" Computed batch {i}/{len(batch_sizes)}: {size} rows")
+        print(f" Computed batch {i + 1}/{num_batches}: {len(X_batch)} rows")
         start = end
 
     shap_values = np.concatenate(all_shap, axis=0)
@@ -174,104 +169,22 @@ def compute_shap_batches(booster, X, batch_size):
     return shap_values
 
 
-def extract_predicted_class_shap(shap_values, y_pred):
-    """
-    Extract SHAP values corresponding to the predicted class and remove bias term.
-
-    Parameters
-    ----------
-    shap_values : np.ndarray
-        SHAP values with shape (n_samples, n_classes, n_features + 1).
-    y_pred : np.ndarray
-        Predicted class indices for each sample.
-
-    Returns
-    -------
-    np.ndarray
-        SHAP values for the predicted class only (n_samples, n_features).
-    """
-    shap_no_bias = shap_values[:, :, :-1]  # remove bias term
-    n_samples = shap_no_bias.shape[0]
-    idx = np.arange(n_samples)
-    shap_pred = shap_no_bias[idx, y_pred, :]
-    return shap_pred
-
-
-def group_true_positives(shap_df):
-    """
-    Group SHAP results by predicted class, keeping only true positives.
-
-    Parameters
-    ----------
-    shap_df : pd.DataFrame
-        DataFrame with SHAP values, including 'Prediction' and 'True_Label'.
-
-    Returns
-    -------
-    dict
-        Mapping of class_id -> DataFrame of true positives.
-    """
-    groups = {}
-    for class_id in np.unique(shap_df["Prediction"].values):
-        df_class = shap_df[
-            (shap_df["Prediction"] == class_id) & (shap_df["True_Label"] == class_id)
-        ].copy()
-        groups[class_id] = df_class
-    return groups
-
-
-def compute_mean_shap_per_class(groups, label_encoder, results_path):
-    """
-    Compute mean SHAP values for each class and save to CSV.
-
-    Parameters
-    ----------
-    groups : dict
-        Mapping from class_id -> DataFrame with true positives.
-    label_encoder : LabelEncoder
-        Fitted encoder for decoding class IDs.
-    results_path : str
-        Directory to save output CSV files.
-    """
-    os.makedirs(results_path, exist_ok=True)
-
-    for class_id, df_class in groups.items():
-        if df_class.empty:
-            continue
-
-        shap_only = df_class.drop(columns=["Prediction", "True_Label"], errors="ignore")
-        mean_shap = shap_only.mean().sort_values(ascending=False)
-
-        df_means = pd.DataFrame({
-            "Feature": mean_shap.index,
-            "Mean_SHAP": mean_shap.values
-        })
-
-        class_name = label_encoder.inverse_transform([class_id])[0]
-        output_path = os.path.join(results_path, f"SHAP_{class_name}.csv")
-        df_means.to_csv(output_path, index=False)
-        print(f"Saved: {output_path} ({len(df_class)} samples)")
-
-
 # =============================================================================
 # Main Execution
 # =============================================================================
 
 def main():
-    """Main execution pipeline."""
+    """Main execution pipeline for global SHAP computation."""
     os.makedirs(RESULTS_PATH, exist_ok=True)
 
     # Load model and encoder
     model, label_encoder = load_model_and_encoder(MODEL_PATH, ENCODER_PATH, DEVICE)
 
-    # Load and clean data
+    # Load and prepare data
     df = load_and_clean_data(BASE_FOLDERS)
-
-    # Split features and (optional) labels
     X = df.drop(columns=["Label"], errors="ignore")
-    y_true = df["Label"] if "Label" in df.columns else None
 
-    # Predict
+    # Predictions
     print("Running predictions...")
     y_pred = model.predict(X)
     print("Predictions completed.")
@@ -279,32 +192,32 @@ def main():
     # Compute SHAP values in batches
     booster = model.get_booster()
     shap_values = compute_shap_batches(booster, X, BATCH_SIZE)
+    shap_values = shap_values[:, :, :-1]  # remove bias
 
-    # Extract SHAP for predicted class only
-    shap_pred = extract_predicted_class_shap(shap_values, y_pred)
+    # Extract SHAP values for predicted class
+    n_samples = shap_values.shape[0]
+    idx = np.arange(n_samples)
+    shap_pred = shap_values[idx, y_pred, :]
 
     # Create SHAP DataFrame
     shap_df = pd.DataFrame(shap_pred, columns=X.columns)
     shap_df["Prediction"] = y_pred
+    shap_df["True_Label"] = label_encoder.transform(df["Label"].values)
 
-    if y_true is not None:
-        try:
-            shap_df["True_Label"] = label_encoder.transform(y_true.values)
-        except Exception:
-            shap_df["True_Label"] = np.nan
-    else:
-        shap_df["True_Label"] = np.nan
+    # Compute global True Positive SHAP
+    print("\nComputing Global True Positive SHAP (all classes combined)...")
+    tp_all = shap_df[shap_df["Prediction"] == shap_df["True_Label"]].copy()
+    shap_only_all = tp_all.drop(columns=["Prediction", "True_Label"])
+    mean_shap_all = shap_only_all.mean().sort_values(ascending=False)
 
-    # Group by class (true positives only)
-    tp_groups = group_true_positives(shap_df)
-    for cid, df_class in tp_groups.items():
-        cname = label_encoder.inverse_transform([cid])[0]
-        print(f"Class {cname}: {len(df_class)} true-positive samples")
+    df_global_tp = pd.DataFrame({
+        "Feature": mean_shap_all.index,
+        "Mean_SHAP": mean_shap_all.values
+    })
 
-    # Compute mean SHAP per class
-    compute_mean_shap_per_class(tp_groups, label_encoder, RESULTS_PATH)
-
-    print("All SHAP computations completed successfully.")
+    output_path = os.path.join(RESULTS_PATH, "TP_Global_SHAP_AllClasses.csv")
+    df_global_tp.to_csv(output_path, index=False)
+    print(f"Global TP SHAP saved successfully to: {output_path}")
 
 
 if __name__ == "__main__":

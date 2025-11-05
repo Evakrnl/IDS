@@ -1,33 +1,29 @@
-# SHAP Per-Feature Analysis for Multiclass XGBoost
+# Multiclass Global SHAP Analysis
 
-##  Purpose of the Analysis
-
-This module provides **feature-level interpretability** for a trained **multiclass XGBoost Intrusion Detection System (IDS)**.
-It allows cybersecurity experts to understand **which features influenced each correct classification**, making the model’s reasoning transparent and auditable.
-
-The analysis answers the question:
-
-> “Which network flow features made the model classify a sample as DDoS, Infiltration, etc., and why?”
-
-This helps analysts verify that the model’s logic aligns with known attack behavior — e.g., high `Flow Packets/s` and `SYN Flag Count` may drive DDoS detection, while abnormal `Idle Mean` may indicate Infiltration.
+This script (`xgb_multiclass_global_shap.py`) performs a **global SHAP feature importance analysis**
+for a trained multiclass XGBoost model. It computes the **average SHAP contribution across all True Positive samples**
+from every class combined into a single output CSV file.
 
 ---
 
-##  Analysis Types
+## Functionality Overview
 
-The SHAP per-feature analysis is divided into two categories:
+1. Loads a trained **XGBoost multiclass model** and its corresponding LabelEncoder.
+2. Reads and merges CSV data from one or more folders.
+3. Cleans NaN and Inf values for stable computation.
+4. Makes predictions for all samples.
+5. Computes SHAP contributions in GPU batches for efficiency.
+6. Extracts SHAP values for the predicted class only.
+7. Combines all True Positive SHAP values to calculate a global mean.
+8. Saves one CSV file:
 
-```
-per-feature_SHAP_analysis/
-├── training_analysis/      # How the model learned (TVAE / real data)
-└── prediction_analysis/    # How the model predicts (CTGAN data)
-```
-
-Each contains subfolders for **multiclass** and **binary_one_vs_all** models.
+   ```
+   TP_Global_SHAP_AllClasses.csv
+   ```
 
 ---
 
-##  Folder Structure
+## Folder Structure
 
 ```
 ids/
@@ -48,7 +44,6 @@ ids/
 │
 ├── xgboost_models/
 │   └── multiclass/
-│       ├── train_multiclass_xgb.py
 │       └── trained_models/
 │           ├── 2017/
 │           ├── 2017_with_oversampling/
@@ -58,123 +53,63 @@ ids/
 │           └── for_all_with_oversampling/
 │
 └── SHAP_analysis/
-    └── per-feature_SHAP_analysis/
-        ├── training_analysis/
-        │   └── multiclass/
-        └── prediction_analysis/
-            └── multiclass/
+    └── global_SHAP_analysis/
+        └── multiclass/
+            ├── prediction_analysis/
+            │   ├── 2017/
+            │   ├── 2017_with_oversampling/
+            │   ├── 2018/
+            │   ├── 2018_with_oversampling/
+            │   ├── for_all/
+            │   └── for_all_with_oversampling/
+            │
+            └── training_analysis/
+                ├── 2017/
+                ├── 2017_with_oversampling/
+                ├── 2018/
+                ├── 2018_with_oversampling/
+                ├── for_all/
+                └── for_all_with_oversampling/
 ```
-
----
-
-##  How It Works
-
-1. **Model & Encoder Loading**
-   Loads the trained XGBoost model (`xgboost_model.json`) and its corresponding `Label Encoder`.
-
-2. **Dataset Loading**
-   Loads and concatenates multiple CSVs from selected folders, cleans `NaN` and `Inf` values.
-
-3. **Prediction**
-   The model predicts the class of each network flow record.
-
-4. **SHAP Computation (GPU)**
-   SHAP values are computed batch-wise using GPU (`pred_contribs=True`), keeping only the SHAPs of the predicted class and removing the bias term.
-
-5. **Per-Class Aggregation**
-   Keeps **true positives** (`Prediction == True_Label`) and computes the **mean SHAP value** per feature for each class.
-
-6. **Results Export**
-   Saves one CSV per class with the average SHAP contributions of each feature.
 
 ---
 
 ## Choosing the Correct Paths
 
-| Analysis Type                 | `LOAD_PATH` (Model Folder)                                                                   | `BASE_FOLDERS` (Prediction Data)                                        | `RESULTS_PATH` (Save SHAP CSVs)                                                                                            |
-| ----------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| **2017**                      | `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2017`                      | `['/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017']`    | `/home/ml1/Documents/ids/SHAP_analysis/per-feature_SHAP_analysis/prediction_analysis/multiclass/2017`                      |
-| **2017_with_oversampling**    | `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2017_with_oversampling`    | `['/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2017']`    | `/home/ml1/Documents/ids/SHAP_analysis/per-feature_SHAP_analysis/prediction_analysis/multiclass/2017_with_oversampling`    |
-| **2018**                      | `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2018`                      | `['/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2018']`    | `/home/ml1/Documents/ids/SHAP_analysis/per-feature_SHAP_analysis/prediction_analysis/multiclass/2018`                      |
-| **2018_with_oversampling**    | `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/2018_with_oversampling`    | `['/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/2018']`    | `/home/ml1/Documents/ids/SHAP_analysis/per-feature_SHAP_analysis/prediction_analysis/multiclass/2018_with_oversampling`    |
-| **for_all**                   | `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/for_all`                   | `['/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/for_all']` | `/home/ml1/Documents/ids/SHAP_analysis/per-feature_SHAP_analysis/prediction_analysis/multiclass/for_all`                   |
-| **for_all_with_oversampling** | `/home/ml1/Documents/ids/xgboost_models/multiclass/trained_models/for_all_with_oversampling` | `['/home/ml1/Documents/ids/datasets/synthetics/predict_CTGAN/for_all']` | `/home/ml1/Documents/ids/SHAP_analysis/per-feature_SHAP_analysis/prediction_analysis/multiclass/for_all_with_oversampling` |
+| Dataset / Model Type          | `LOAD_PATH` (Model Folder)                                                | `BASE_FOLDERS` (Prediction Data)                     | `RESULTS_PATH` (Save Global SHAP CSV)                                                              |
+| ----------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **2017**                      | `/ids/xgboost_models/multiclass/trained_models/2017`                      | `['/ids/datasets/synthetics/predict_CTGAN/2017']`    | `/ids/SHAP_analysis/global_SHAP_analysis/multiclass/prediction_analysis/2017`                      |
+| **2017_with_oversampling**    | `/ids/xgboost_models/multiclass/trained_models/2017_with_oversampling`    | `['/ids/datasets/synthetics/predict_CTGAN/2017']`    | `/ids/SHAP_analysis/global_SHAP_analysis/multiclass/prediction_analysis/2017_with_oversampling`    |
+| **2018**                      | `/ids/xgboost_models/multiclass/trained_models/2018`                      | `['/ids/datasets/synthetics/predict_CTGAN/2018']`    | `/ids/SHAP_analysis/global_SHAP_analysis/multiclass/prediction_analysis/2018`                      |
+| **2018_with_oversampling**    | `/ids/xgboost_models/multiclass/trained_models/2018_with_oversampling`    | `['/ids/datasets/synthetics/predict_CTGAN/2018']`    | `/ids/SHAP_analysis/global_SHAP_analysis/multiclass/prediction_analysis/2018_with_oversampling`    |
+| **for_all**                   | `/ids/xgboost_models/multiclass/trained_models/for_all`                   | `['/ids/datasets/synthetics/predict_CTGAN/for_all']` | `/ids/SHAP_analysis/global_SHAP_analysis/multiclass/prediction_analysis/for_all`                   |
+| **for_all_with_oversampling** | `/ids/xgboost_models/multiclass/trained_models/for_all_with_oversampling` | `['/ids/datasets/synthetics/predict_CTGAN/for_all']` | `/ids/SHAP_analysis/global_SHAP_analysis/multiclass/prediction_analysis/for_all_with_oversampling` |
+
 
  *If analyzing model training instead of prediction, replace CTGAN paths with preprocessed or oversampling_TVAE data accordingly.*
+---
+
+## Output
+
+Each run produces one global CSV file:
+
+```
+TP_Global_SHAP_AllClasses.csv
+```
+
+This file contains two columns:
+
+| Column       | Description                                       |
+| ------------ | ------------------------------------------------- |
+| **Feature**  | The name of the network feature                   |
+| **MeanSHAP** | Average SHAP value across all TP samples combined |
 
 ---
 
-##  Example Output (CSV)
-
-Each class produces a CSV file such as:
-
-```
-SHAP_DDoS.csv
-SHAP_Benign.csv
-SHAP_Infiltration.csv
-```
-
-Each file contains:
-
-```
-Feature,Mean_SHAP
-Flow Duration,0.1523
-Total Fwd Packets,0.0987
-Fwd IAT Mean,0.0651
-...
-```
-
-These represent the **average contribution** of each feature to correct predictions for that class.
-
----
-
-## Interpretation Context
-
-* **Training Analysis:** explains what the model learned (features that influenced its internal structure).
-* **Prediction Analysis:** explains how the model applies that knowledge to new synthetic samples (CTGAN).
-
-The SHAP results allow a security expert to:
-
-* Identify which network traffic patterns the model associates with specific attacks.
-* Verify that predictions are based on **legitimate indicators** rather than spurious correlations.
-* Document and justify AI-driven intrusion detection decisions.
-
----
-
-##  Requirements
-
-* Python >= 3.11
-* xgboost >= 2.0
-* pandas >= 2.0
-* numpy >= 1.24
-* joblib >= 1.3
-
-Install dependencies:
+## Example Run
 
 ```bash
-pip install xgboost pandas numpy joblib
+python xgb_multiclass_global_shap.py
 ```
 
----
-
-##  Run
-
-Simply execute the analysis script (example for prediction analysis):
-
-```bash
-python xgb_multiclass_shap.py
-```
-
-All SHAP results will be saved automatically to the corresponding folder defined in `RESULTS_PATH`.
-
----
-
-##  Optional Extensions
-
-You can extend the script to:
-
-* Generate **Top-20 feature bar plots** per class.
-* Compare SHAP outputs between oversampled and non-oversampled models.
-* Merge global and per-feature SHAP results for unified visual analytics.
-
----
+The global SHAP results are automatically saved to the defined `RESULTS_PATH`.

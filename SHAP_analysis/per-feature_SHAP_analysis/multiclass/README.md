@@ -168,7 +168,6 @@ To install everything, simply run:
 ```bash
 pip install -r requirements.txt
 
-Install dependencies:
 
 ```bash
 pip install xgboost pandas numpy joblib
