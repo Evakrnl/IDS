@@ -1,0 +1,97 @@
+.
+├── data_distribution_kde_plots
+│   ├── preprocessed
+│   │   ├── per_session
+│   │   └── per_year
+│   ├── README.md
+│   └── synthetics
+│       ├── ctgan
+│       ├── kde_plots_synthetics.py
+│       ├── README.md
+│       └── tvae
+├── datasets
+│   ├── original
+│   │   ├── attempted_categories
+│   │   ├── CICIDS2017_improved
+│   │   ├── CICIDS2017_improved_grouped
+│   │   ├── CSECICIDS2018_improved
+│   │   └── CSECICIDS2018_improved_grouped
+│   ├── preprocessed
+│   │   ├── per_session
+│   │   └── per_year
+│   ├── README.md
+│   ├── SCHEMA.md
+│   └── synthetics
+│       ├── oversampling_TVAE
+│       └── predict_CTGAN
+├── predict
+│   ├── binary_one_vs_all
+│   │   ├── 2017
+│   │   ├── 2017_with_oversampling
+│   │   ├── 2018
+│   │   ├── 2018_with_oversampling
+│   │   ├── for_all
+│   │   ├── for_all_with_oversampling
+│   │   ├── predict_one_vs_all.py
+│   │   └── README.md
+│   ├── multiclass
+│   │   ├── 2017
+│   │   ├── 2017_with_oversampling
+│   │   ├── 2018
+│   │   ├── 2018_with_oversampling
+│   │   ├── for_all
+│   │   ├── for_all_with_oversampling
+│   │   ├── predict_multiclass_xgb.py
+│   │   └── README.md
+│   ├── README.md
+│   └── requirements.txt
+├── preprocessing
+│   ├── dataset_codes
+│   │   ├── attacks_count.py
+│   │   ├── check_duplicate_features.py
+│   │   ├── create_feature_stats.py
+│   │   ├── delete_column.py
+│   │   ├── enumerate_csv_labels.py
+│   │   ├── group_by_label_per_session.py
+│   │   ├── group_by_label.py
+│   │   ├── normalize_labels.py
+│   │   └── random_benign_pick.py
+│   └── README.md
+├── requirements.txt
+├── SHAP_analysis
+│   ├── global_SHAP_analysis
+│   │   ├── binary_one_vs_all
+│   │   └── multiclass
+│   ├── per-feature_SHAP_analysis
+│   │   ├── binary_one_vs_all
+│   │   └── multiclass
+│   └── README.md
+├── structure_detailed.txt
+├── synthesizers
+│   ├── ctgan
+│   │   ├── 2017
+│   │   ├── 2018
+│   │   ├── for_all
+│   │   ├── generate_ctgan.py
+│   │   └── README.md
+│   ├── README.md
+│   ├── requirements.txt
+│   └── tvae
+│       ├── 2017
+│       ├── 2018
+│       ├── for_all
+│       ├── generate_tvae.py
+│       └── README.md
+└── xgboost_models
+    ├── binary_one_vs_all
+    │   ├── README.md
+    │   ├── trained_models
+    │   └── train_one_vs_all_xgb.py
+    ├── multiclass
+    │   ├── README.md
+    │   ├── trained_models
+    │   └── train_multiclass_xgb.py
+    ├── README.md
+    └── requirements.txt
+
+59 directories, 36 files
